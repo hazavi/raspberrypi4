@@ -1,0 +1,12 @@
+[Unit]
+Description=Binary Clock Service
+After=network.target
+
+[Service]
+ExecStart=/home/haz/senseHat/src/binary_clock.py -r 90
+Restart=always
+User=haz
+Group=haz
+
+[Install]
+WantedBy=multi-user.target
