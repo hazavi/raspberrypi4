@@ -133,6 +133,7 @@ chmod +x binary_clock.py
 ### 📄 View the Man Page
 
 ```bash
+sed -i 's/^    /\t/' Makefile
 man binary_clock
 ```
 
