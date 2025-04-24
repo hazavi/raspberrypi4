@@ -1,20 +1,21 @@
-# Rasberry Pi 4
 
-#### **Project Overview**
-This project includes a Bash script (`linux_info.sh`) and Python scripts for interacting with the Raspberry Pi's Sense HAT.
+# Raspberry Pi 4 Sense HAT Projects
+
+This project includes Bash and Python scripts made for the Raspberry Pi and Sense HAT. It shows how to automate basic system tasks and use the Sense HAT’s sensors and LED display to interact with real-world data like temperature, humidity, and more.
 
 ---
 
-### **1. `linux_info.sh`**
+## 📌 Project Overview
 
-#### **Description**
-The `linux_info.sh` script performs the following tasks:
-1. Creates a new user named `testuser`.
-2. Creates a `Projects` directory in `/home/testuser/`.
-3. Displays system and kernel information.
-4. Prints Linux distribution details.
+### 1. `linux_info.sh`
+A Bash script for quick system setup and information gathering.
 
-#### **Usage**
+#### ✅ Features
+- Creates a new user `testuser`
+- Sets up a `Projects` folder in `/home/testuser/`
+- Displays system/kernel and distribution information
+
+#### ▶️ Usage
 ```bash
 chmod +x linux_info.sh
 ./linux_info.sh
@@ -22,70 +23,122 @@ chmod +x linux_info.sh
 
 ---
 
-### **2. Sense HAT Scripts**
+### 2. Sense HAT Applications
 
-#### **Features**
-- Display temperature, pressure, and humidity.
-- Handle joystick events to trigger actions like displaying flags or starting snake game.
-- Show a binary clock on the LED matrix.
+This part of the project uses the Raspberry Pi Sense HAT to create interactive and visual Python applications. These scripts use the LED matrix, sensors (temperature, humidity, pressure), and joystick to display data or play simple games.
 
-#### **Key Scripts**
-- `humidity_display.py`: Displays humidity or fallback data.
-- `joystick_events.py`: Handles joystick interactions.
-- `danish_flag.py`: Displays the Danish flag.
-- `snake_game.py`: Starts snake game.
-- `binary_clock.py`: Shows a binary clock.
-- 
-### Project Structure
-
+#### 📁 Project Structure
 ```
-senseHat
-├── src
-│   ├── senseHat.py          # Main entry point of the application
-│   ├── binary_clock.py      # Displays the current time in binary format
-│   ├── joystick_events.py    # Manages joystick events
-│   ├── danish_flag.py       # Draws the Danish flag
-│   ├── temperature_display.py # Displays current temperature
-│   ├── humidity_display.py   # Displays current humidity
-│   ├── snake_game.py        # Implements the snake game
-│   └── utils
-│       └── helpers.py       # Utility functions
-├── requirements.txt         # Project dependencies
+senseHat/
+├── src/
+│   ├── senseHat.py           # Main entry point
+│   ├── binary_clock.py       # Binary clock display
+│   ├── joystick_events.py    # Joystick controls
+│   ├── danish_flag.py        # Danish flag visual
+│   ├── temperature_display.py# Temperature data
+│   ├── humidity_display.py   # Humidity data
+│   ├── snake_game.py         # Classic snake game
+│   └── utils/helpers.py      # Shared utility functions
+├── requirements.txt          # Python dependencies
+└── README.md                 # Documentation
 ```
 
-#### **Run a Script**
+#### ⚙️ Setup
+1. **Install Raspberry Pi OS**  
+2. **Install the Sense HAT library**:
+   ```bash
+   sudo apt-get update
+   sudo apt-get install sense-hat
+   ```
+3. **Clone the repo**:
+   ```bash
+   git clone <repository-url>
+   cd senseHat
+   ```
+4. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+#### 🚀 Run the Application
 ```bash
-python3 <script_name>.py
+python3 src/senseHat.py
 ```
 
+#### 🎮 Functionalities
+- **Binary Clock** – Shows time in binary on the LED matrix.
+- **Joystick Navigation** – Switch between:
+  - Danish Flag - Left
+  - Temperature Display - Up
+  - Humidity Display - Down
+  - Snake Game - Right
+- **Sensor Displays** – Real-time data from built-in sensors.
+- **Games** – Simple interactive experiences like Snake.
 
 ---
 
-### **3. Requirements**
+### 3. Binary Clock as a Standalone Project
 
- **Install Raspberry Pi OS**: Ensure you have Raspberry Pi OS installed on your Raspberry Pi.
- 
-#### **Hardware**
+A focused application displaying the current time in binary on the LED matrix with support for display rotation and service automation.
+
+#### 🌟 Features
+- LED matrix time display in binary format
+- Optional rotation angle (`-r 0|90|180|270`)
+- Graceful signal termination (`SIGTERM`)
+- Runs as a Linux service
+- Includes a `Makefile` and a manual page
+
+#### 🔧 Requirements
 - Raspberry Pi with Sense HAT
+- Python 3 + `sense-hat` library
+- `pandoc` for man page generation
 
-#### **Software**
-- Python 3
-- Sense HAT library
-```
-sudo apt-get update
-sudo apt-get install sense-hat
- ```
-
-#### **Install Dependencies**
+#### ⚙️ Setup
 ```bash
-sudo apt-get update
-sudo apt-get install sense-hat python3-sense-hat
+chmod +x binary_clock.py
 ```
 
-## Usage
+#### ▶️ Usage
 
-To run the application, execute the following command:
+**Run manually:**
+```bash
+./binary_clock.py -r 90
 ```
-python3 src/senseHat.py
+
+---
+
+### 🔄 Managing the Linux Service
+
+| Action              | Command                                  |
+|---------------------|------------------------------------------|
+| Start service       | `sudo systemctl start binaryClock.service` |
+| Check status        | `sudo systemctl status binaryClock.service` |
+| Stop service        | `sudo systemctl stop binaryClock.service` |
+| Enable on boot      | `sudo systemctl enable binaryClock.service` |
+| Disable service     | `sudo systemctl disable binaryClock.service` |
+
+---
+
+### 🛠 Makefile Automation
+
+| Task                  | Command               |
+|-----------------------|------------------------|
+| Run all tasks         | `make all`             |
+| Delete temp folder    | `make delete_folder`   |
+| Delete service        | `make delete_service`  |
+| Restore service       | `make restore_service` |
+
+---
+
+### 📄 View the Man Page
+
+```bash
+man binary_clock
 ```
+
+---
+
+## 📜 License
+
+This project is intended for educational purposes only.
 
