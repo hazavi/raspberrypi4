@@ -1,0 +1,6 @@
+from sense_hat import SenseHat
+
+# Required libraries for the Sense HAT project
+sense_hat
+pygame
+```
