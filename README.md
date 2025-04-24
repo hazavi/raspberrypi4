@@ -1,12 +1,42 @@
 # Rasberry Pi 4
 
+#### **Project Overview**
+This project includes a Bash script (`linux_info.sh`) and Python scripts for interacting with the Raspberry Pi's Sense HAT.
 
+---
 
-# Sense HAT Project
+### **1. `linux_info.sh`**
 
-This project is designed for the Raspberry Pi using the Sense HAT. It implements a variety of functionalities, including a binary clock, joystick event handling, and displays for temperature, humidity, and a Danish flag. Additionally, it features a simple snake game.
+#### **Description**
+The `linux_info.sh` script performs the following tasks:
+1. Creates a new user named `testuser`.
+2. Creates a `Projects` directory in `/home/testuser/`.
+3. Displays system and kernel information.
+4. Prints Linux distribution details.
 
-## Project Structure
+#### **Usage**
+```bash
+chmod +x linux_info.sh
+./linux_info.sh
+```
+
+---
+
+### **2. Sense HAT Scripts**
+
+#### **Features**
+- Display temperature, pressure, and humidity.
+- Handle joystick events to trigger actions like displaying flags or starting snake game.
+- Show a binary clock on the LED matrix.
+
+#### **Key Scripts**
+- `humidity_display.py`: Displays humidity or fallback data.
+- `joystick_events.py`: Handles joystick interactions.
+- `danish_flag.py`: Displays the Danish flag.
+- `snake_game.py`: Starts snake game.
+- `binary_clock.py`: Shows a binary clock.
+- 
+### Project Structure
 
 ```
 senseHat
@@ -23,44 +53,39 @@ senseHat
 ├── requirements.txt         # Project dependencies
 ```
 
-## Setup Instructions
+#### **Run a Script**
+```bash
+python3 <script_name>.py
+```
 
-1. **Install Raspberry Pi OS**: Ensure you have Raspberry Pi OS installed on your Raspberry Pi.
 
-2. **Install the Sense HAT Library**: You can install the Sense HAT library using pip. Run the following command in your terminal:
-   ```
-   sudo apt-get update
-   sudo apt-get install sense-hat
-   ```
+---
 
-3. **Clone the Repository**: Clone this repository to your local machine:
-   ```
-   git clone <repository-url>
-   cd senseHat
-   ```
+### **3. Requirements**
 
-4. **Install Dependencies**: Navigate to the project directory and install the required Python packages:
-   ```
-   pip install -r requirements.txt
-   ```
+ **Install Raspberry Pi OS**: Ensure you have Raspberry Pi OS installed on your Raspberry Pi.
+ 
+#### **Hardware**
+- Raspberry Pi with Sense HAT
+
+#### **Software**
+- Python 3
+- Sense HAT library
+```
+sudo apt-get update
+sudo apt-get install sense-hat
+ ```
+
+#### **Install Dependencies**
+```bash
+sudo apt-get update
+sudo apt-get install sense-hat python3-sense-hat
+```
 
 ## Usage
 
 To run the application, execute the following command:
 ```
-python src/senseHat.py
+python3 src/senseHat.py
 ```
-
-## Functionalities
-
-- **Binary Clock**: Displays the current time in binary format on the Sense HAT LED matrix upon startup.
-- **Joystick Events**: Listens for joystick pushes to switch between different displays:
-  - Danish Flag
-  - Temperature
-  - Humidity
-  - Snake Game
-- **Danish Flag**: Draws the Danish flag on the LED matrix.
-- **Temperature Display**: Retrieves and displays the current temperature from the Sense HAT's sensors.
-- **Humidity Display**: Retrieves and displays the current humidity from the Sense HAT's sensors.
-- **Snake Game**: A simple implementation of the classic snake game using the Sense HAT.
 
